@@ -52,7 +52,7 @@
     function payment() {
         requestTarget = "/checkout/v1/payment";
         invoice = 'INV'+Math.floor(Math.random() * (100000 - 200000)) + 100000;
-        clientId = document.getElementById("clientId").value;
+        clientId = document.getElementById("clientId");
         requestDate = new Date().toISOString().slice(0, 19) + "Z";
         var environmentUrl = 'https://sandbox.doku.com';
 
@@ -97,14 +97,14 @@
     }
 
     function prepareBody() {
-        var order_amount = document.getElementById("amount").value;
+        var order_amount = document.getElementById("amount");
         var order_invoice_number = invoice;
         var session_id = makeSession(32);
         var today = new Date();
         var request_date_time = today.getFullYear() + '0' + (today.getMonth() + 1) + '' + today.getDate() + today.getHours() + "" + today.getMinutes() + "" + today.getSeconds();
         var order_callback_url = 'https://www.doku.com';
         var item_name = 'DOKU Basic T-Shirt';
-        var item_price = document.getElementById("amount").value;
+        var item_price = document.getElementById("amount");
         var item_quantity = 1;
         var customer_name = 'Alif';
         var customer_email = 'm.alif@doku.com';
@@ -162,7 +162,7 @@
     function createSignature(body) {
         var digest = CryptoJS.enc.Base64.stringify(CryptoJS.SHA256(body));
         var rawSignature = consumeDigest(digest);
-        var key = document.getElementById("sharedKey").value;
+        var key = document.getElementById("sharedKey");
         var signature = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(rawSignature, key));
         return signature;
     }
